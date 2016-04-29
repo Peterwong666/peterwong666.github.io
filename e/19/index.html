@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=utf-8"utf-8"/>
+    <title>单元行上鼠标悬停提示</title>
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.min.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="../css/reset.css"  media="all"/>
+    <style type="text/css">
+        .demo{ width:350px;margin:50px auto; text-align:left; padding:0; }
+        .list{ color:#2a6496;}
+        .list li{ position:relative; width:320px;list-style:decimal inside;line-height:35px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+        .list a{font-size:18px;}
+        .tip{position:absolute;left: 0;display:none;color:#fff;background:rgba(0,0,0, 0.6); line-height:25px;font-size:12px;padding:2px 5px;border-radius:5px;z-index:1}
+        .ellipsis{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    </style>
+</head>
+<body>
+<div id="div" class="demo">
+<h2>单元行上鼠标悬停提示</h2>
+    <ol class="list">
+        <li><i></i><a href="#" data-title="“霍金辐射”理论证实:黑洞逐渐萎缩直至消…">“霍金辐射”理论证实:黑洞逐渐萎缩直至消…</a></li>
+        <li><i></i><a href="#" data-title="中日女排精英赛:中国女排胜日本（组图）_…">中日女排精英赛:中国女排胜日本（组图）_…</a></li>
+        <li><i></i><a href="#" data-title="斯诺克世锦赛：丁俊晖晋级半决赛（组图）_…">斯诺克世锦赛：丁俊晖晋级半决赛（组图）_…</a></li>        
+        <li><i></i><a href="#" data-title="“霍金辐射”理论证实:黑洞逐渐萎缩直至消…">“霍金辐射”理论证实:黑洞逐渐萎缩直至消…</a></li>
+        <li><i></i><a href="#" data-title="中日女排精英赛:中国女排胜日本（组图）_…">中日女排精英赛:中国女排胜日本（组图）_…</a></li>
+        <li><i></i><a href="#" data-title="斯诺克世锦赛：丁俊晖晋级半决赛（组图）_…">斯诺克世锦赛：丁俊晖晋级半决赛（组图）_…</a></li>
+    </ol>
+</div>
+<script>
+    (function(){
+        var div = document.getElementById('div');
+        var links = div.getElementsByTagName('a');
+        var tip = createTip();
+        for(var i = 0; i < links.length; i++){
+            links[i].onmousemove = function(e){
+                e = e || event;
+                var title = this.getAttribute('data-title');
+                tip.innerHTML = title;
+                tip.style.display = 'block';
+                tip.style.left = e.clientX + 10 + 'px';
+                tip.style.top = e.clientY + 15 + 'px';
+            }
+            links[i].onmouseout = function(e){
+                tip.style.display = 'none'
+            }
+        }
+        function createTip(){
+            var div = document.createElement('div');
+            div.className = 'tip';
+            return document.body.appendChild(div);
+        }
+    }());
+</script>
+</body>
+</html>
